@@ -1,94 +1,52 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f4f4f4;
 }
-
-.todo-app {
+.form-container {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
-
-h1 {
+.form-container h2 {
+    margin-bottom: 20px;
     text-align: center;
-    color: #333;
 }
-
-/* Search Box */
-.search-box {
-    margin-bottom: 20px;
+.form-group {
+    margin-bottom: 15px;
 }
-
-.search-box input {
-    width: 95%;
-    padding: 10px;
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input {
+    width: 94%;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    outline: none;
 }
-
-.todo-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
-
-.todo-input input {
-    flex: 1;
+button {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-
-.todo-input button {
-    padding: 10px 15px;
     border: none;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 }
-
-.todo-input button:hover {
-    background-color: #0056b3;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-li span {
-    flex: 1;
-    margin-left: 10px;
-}
-
-li .trash-icon {
-    color: #dc3545;
-    cursor: pointer;
-}
-
-li .trash-icon:hover {
-    color: #c82333;
+button:hover {
+    background-color: #218838;
 }

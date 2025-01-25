@@ -1,51 +1,46 @@
-const todoInput = document.getElementById('todoInput');
-const addButton = document.getElementById('addButton');
-const todoList = document.getElementById('todoList');
-const searchInput = document.getElementById('searchInput');
+function validateForm(event) {
+  event.preventDefault(); // Prevent form submission for testing
+  let isValid = true;
 
-let todos = [];
+  // Get form values
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-// Function to add a new task
-function addTodo() {
-  const task = todoInput.value.trim();
-  if (task) {
-    todos.push(task);
-    todoInput.value = '';
-    renderTodos();
+  // Clear previous errors
+  document.getElementById("nameError").innerHTML = "";
+  document.getElementById("emailError").innerHTML = "";
+  document.getElementById("passwordError").innerHTML = "";
+
+  // Regular expressions
+  const namePattern = /^[a-zA-Z\s]{3,30}$/; // Letters only, 3-30 chars
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // At least 6 chars, 1 letter, 1 number
+
+  // Validate Name
+  if (!namePattern.test(name)) {
+      document.getElementById("nameError").innerHTML =
+          "Name must be 3-30 characters and letters only.";
+      isValid = false;
+  }
+
+  // Validate Email
+  if (!emailPattern.test(email)) {
+      document.getElementById("emailError").innerHTML =
+          "Please enter a valid email address.";
+      isValid = false;
+  }
+
+  // Validate Password
+  if (!passwordPattern.test(password)) {
+      document.getElementById("passwordError").innerHTML =
+          "Password must be at least 6 characters, with at least one letter and one number.";
+      isValid = false;
+  }
+
+  // Submit form if valid
+  if (isValid) {
+      alert("Form submitted successfully!");
+      document.getElementById("validationForm").submit();
   }
 }
-
-// Function to delete a task
-function deleteTodo(index) {
-  todos.splice(index, 1);
-  renderTodos();
-}
-
-// Function to render the tasks (filtered by search)
-function renderTodos() {
-  const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredTodos = todos.filter(todo => todo.toLowerCase().includes(searchTerm));
-
-  todoList.innerHTML = '';
-  filteredTodos.forEach((todo, index) => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <span>${todo}</span>
-      <i class="trash-icon" onclick="deleteTodo(${index})">🗑️</i>
-    `;
-    todoList.appendChild(li);
-  });
-}
-
-// Event listener for adding a task
-addButton.addEventListener('click', addTodo);
-
-// Add task with Enter key
-todoInput.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    addTodo();
-  }
-});
-
-// Event listener for search functionality
-searchInput.addEventListener('input', renderTodos);
